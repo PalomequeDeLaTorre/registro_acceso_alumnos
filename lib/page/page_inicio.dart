@@ -26,7 +26,7 @@ class MyHomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Image.asset(
-                  'assets/logo.png', // Ruta de tu logo
+                  'assets/logo.png', // Ruta del logo
                   fit: BoxFit.contain,
                   height: 20,
                 ),
@@ -68,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Aquí puedes agregar la funcionalidad para el botón
+                        // Aquí se puede agregar la funcionalidad para el botón
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
