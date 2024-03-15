@@ -21,12 +21,12 @@ class MyHomePage extends StatelessWidget {
         children: [
           Container(
             color: Colors.blue,
-            padding: EdgeInsets.all(2),
+            padding: EdgeInsets.all(10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Image.asset(
-                  'assets/logo.png', // Ruta del logo
+                  'assets/imgUT.png',
                   fit: BoxFit.contain,
                   height: 20,
                 ),
@@ -59,12 +59,11 @@ class MyHomePage extends StatelessWidget {
                       'Implementación de un sistema de reconocimiento facial para el control de acceso de alumnos de la Universidad Tecnológica de San Juan del Río.',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        fontFamily: '', // Agregar tipo de letra
                         fontSize: 18,
                       ),
                     ),
                   ),
-                  SizedBox(height: 40),
+                  SizedBox(height: 60),
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
@@ -72,32 +71,33 @@ class MyHomePage extends StatelessWidget {
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.green), // Cambiar color a verde
+                            Color.fromARGB(157, 0, 255, 8)),
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20)), // Ajustar el relleno para hacerlo más pequeño
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
                       ),
                       child: Text(
                         'Get Start',
                         style: TextStyle(
-                          fontSize: 20, // Tamaño de fuente más pequeño
-                          color: Colors.white, // Cambiar color del texto a blanco
-                          fontWeight: FontWeight.bold, // Hacer el texto en negrita
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 40),
+                  SizedBox(height: 90),
                   Image.asset(
-                    'assets/imagen1.png', // Ruta de la primera imagen
+                    'assets/ImgView.png',
                     fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 120),
+                  Image.asset(
+                    'assets/imgUT.png', // Ruta de la segunda imagen
+                    fit: BoxFit.cover,
+                    height: 70, // Tamaño de altura para la segunda imagen
                   ),
                   SizedBox(height: 20),
-                  Image.asset(
-                    'assets/imagen2.png', // Ruta de la segunda imagen
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(height: 365),
                   Container(
                     color: const Color.fromARGB(255, 0, 0, 0),
                     padding: EdgeInsets.all(10),
