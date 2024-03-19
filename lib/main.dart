@@ -1,18 +1,14 @@
-import 'package:acceso_alumnos/page/page_inicio.dart';
+import 'package:acceso_alumnos/page/page_historial.dart';
+import 'package:acceso_alumnos/page/page_login.dart';
+import 'package:acceso_alumnos/page/page_bienvenido.dart';
 import 'package:flutter/material.dart';
+import 'package:acceso_alumnos/page/page_inicio.dart';
 
 void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,4 +17,25 @@ class _MyAppState extends State<MyApp> {
       home: MyHomePage(),
     );
   }
+}
+
+void navigateToLoginPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => LoginPage()),
+  );
+}
+
+void navigateToBienbenidoPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => PageBienvenido()),
+  );
+}
+
+void navigateToHistorialPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => PageHistorial()),
+  );
 }

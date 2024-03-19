@@ -1,33 +1,7 @@
 import 'package:flutter/material.dart';
-import 'page_login.dart'; // Importa la página de inicio de sesión
+import 'page_historial.dart'; // Importa la página de inicio de sesión
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Face Recognition',
-      theme: ThemeData(
-        primaryColor: Color.fromARGB(255, 3, 136, 202),
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: TextTheme(
-          headline6: TextStyle(
-            fontFamily: 'Orbitron',
-            fontSize: 100,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-          titleLarge: TextStyle(
-            fontSize: 100,
-            color: Colors.black87,
-          ),
-        ),
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
+class PageBienvenido extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +10,10 @@ class MyHomePage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromARGB(255, 3, 136, 202), Color.fromRGBO(12, 108, 163, 1)],
+                colors: [
+                  Color.fromARGB(255, 3, 136, 202),
+                  Color.fromRGBO(12, 108, 163, 1)
+                ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -70,7 +47,7 @@ class MyHomePage extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Text(
-                      'Face Recognition',
+                      'Bienvenido',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Orbitron',
@@ -80,39 +57,50 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 25),
-                  Padding(
+                  SizedBox(height: 10),
+                  Text(
+                    'Tutor: Sr. Carlos',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Text(
-                      'Implementación de un sistema de reconocimiento facial para el control de acceso de alumnos de la Universidad Tecnológica de San Juan del Río.',
+                      'Como responsable tutor usted tiene el control del acesso de la entrada y salida de su hijo (alumno) de la UTSJR.',
                       textAlign: TextAlign.justify,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 25),
+                  SizedBox(height: 10),
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navegar a la página de inicio de sesión
+                        // Aquí tu lógica para el botón de inicio de sesión
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
+                                context,
+                                MaterialPageRoute(builder: (context) => PageHistorial()),
+                              );
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 32, 160, 117)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color.fromARGB(
+                                255, 32, 160, 117)),
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                           EdgeInsets.symmetric(vertical: 15, horizontal: 25),
                         ),
-                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0), // Establece el radio del borde a cero
-                             ),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
+                        ),
                       ),
                       child: Text(
-                        'Get Started',
+                        'Acesso alumno',
                         style: TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(221, 255, 255, 255),
@@ -121,22 +109,12 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 90),
-                  Center(
-                    child: Image.asset(
-                      'assets/ImgView.png',
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width * 0.7,
-                    ),
-                  ),
-                  SizedBox(height: 90),
+                  SizedBox(height: 350),
                   Center(
                     child: Image.asset(
                       'assets/imgUT.png',
                       fit: BoxFit.cover,
                       width: MediaQuery.of(context).size.width * 0.5,
-                      
                     ),
                   ),
                   SizedBox(height: 20),
