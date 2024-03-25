@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'page_historial.dart'; // Importa la página de inicio de sesión
+import 'page_historial.dart'; 
 
 class PageBienvenido extends StatelessWidget {
   @override
@@ -67,10 +67,10 @@ class PageBienvenido extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Text(
-                      'Como responsable tutor usted tiene el control del acesso de la entrada y salida de su hijo (alumno) de la UTSJR.',
+                      'Como responsable tutor usted tiene el control del acceso de la entrada y salida de su hijo (alumno) de la UTSJR.',
                       textAlign: TextAlign.justify,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
@@ -80,11 +80,11 @@ class PageBienvenido extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Aquí tu lógica para el botón de inicio de sesión
+                        // Aquí tu lógica para el botón
                         Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => PageHistorial()),
-                              );
+                          context,
+                          MaterialPageRoute(builder: (context) => PageHistorial(client: null)), // Aquí pasas el cliente MQTT
+                        );
                       },
                       style: ButtonStyle(
                         backgroundColor:
@@ -100,7 +100,7 @@ class PageBienvenido extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Acesso alumno',
+                        'Acceso alumno',
                         style: TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(221, 255, 255, 255),

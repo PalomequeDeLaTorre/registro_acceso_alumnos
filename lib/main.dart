@@ -34,8 +34,10 @@ void navigateToBienbenidoPage(BuildContext context) {
 }
 
 void navigateToHistorialPage(BuildContext context) {
+  // Aquí necesitas proporcionar un cliente MQTT válido al crear PageHistorial
+  // Por ahora, puedes pasar null si no tienes uno disponible
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => PageHistorial()),
+    MaterialPageRoute(builder: (context) => PageHistorial(client: null)),
   );
 }

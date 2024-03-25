@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'page_bienvenido.dart'; // Importa la página de inicio de sesión
+import 'package:mqtt_client/mqtt_client.dart' as mqtt;
+import 'page_bienvenido.dart'; 
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +9,29 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _passwordVisible = false;
+  mqtt.MqttClient? client; // Cliente MQTT
+
+  @override
+  void initState() {
+    super.initState();
+    _setupMQTT();
+  }
+
+  void _setupMQTT() async {
+    client = mqtt.MqttClient('broker.example.com', ''); // Cambia 'broker.example.com' por tu servidor MQTT
+    // Configurar opciones de conexión, como credenciales si es necesario
+    // Escuchar mensajes entrantes
+    client?.updates?.listen((List<mqtt.MqttReceivedMessage<mqtt.MqttMessage>> messages) {
+      // Procesar los mensajes recibidos
+    });
+
+    try {
+      await client?.connect();
+      print('Conectado al servidor MQTT');
+    } catch (e) {
+      print('Error al conectar al servidor MQTT: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Número de expediente:', // Texto de ejemplo agregado
+                          'Número de expediente:',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,
@@ -78,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start, // Alinea los widgets a la izquierda
+                      crossAxisAlignment: CrossAxisAlignment.start, 
                       children: [
                         Text(
                           'Usuario:',
@@ -122,15 +146,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(height: 70),
-                        Center( // Este es el nuevo Center que centrará el botón
+                        Center( 
                           child: ElevatedButton(
                             onPressed: () {
-                              // Redirecciona a la página de bienvenida al hacer clic en el botón
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => PageBienvenido()),
-                              );
-                              // Aquí se puede agregar la funcionalidad para el inicio de sesión
+                              // Aquí va la lógica para el botón 
+                              _signIn();
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 32, 160, 117)),
@@ -139,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0), // Establece el radio del borde a cero
+                                  borderRadius: BorderRadius.circular(10.0), 
                                 ),
                               ),
                             ),
@@ -189,5 +209,32 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void _signIn() {
+    // Lógica para autenticar al usuario
+    String usuario = '2022143015'; // Usuario
+    String contrasena = '2022143015'; // Contraseña
+
+    // Verifica si el usuario y la contraseña coinciden
+    if (usuario == '2022143015' && contrasena == '2022143015') {
+      // Autenticación exitosa
+      if (client != null) {
+        // Suscríbete a un tema MQTT después de la autenticación
+        client?.subscribe('historial/alumno/expediente123', mqtt.MqttQos.atMostOnce);
+ // Sustituye 'expediente123' con el expediente del usuario autenticado
+        // Redirige a la página de bienvenida
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PageBienvenido()),
+        );
+      } else {
+        print('El cliente MQTT es nulo');
+        // Realiza alguna acción de manejo de errores, como mostrar un mensaje de error
+      }
+    } else {
+      // Autenticación fallida
+      // Muestra un mensaje de error o realiza otras acciones según sea necesario
+    }
   }
 }

@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 
 class PageHistorial extends StatelessWidget {
+  final mqtt.MqttClient? client;
+
+  PageHistorial({required this.client});
+
   @override
   Widget build(BuildContext context) {
+    List<String> historial = [];
+    
+    client?.updates?.listen((List<mqtt.MqttReceivedMessage<mqtt.MqttMessage>>? messages) {
+      final mqtt.MqttPublishMessage recMess = messages![0].payload as mqtt.MqttPublishMessage;
+      final String message = mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+
+      historial.add(message);
+    });
+
     return Scaffold(
       body: Column(
         children: [
@@ -92,7 +106,7 @@ class PageHistorial extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        // Aquí tu lógica para el botón de inicio de sesión
+                        // Aquí tu lógica para el botón
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
